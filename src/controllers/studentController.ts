@@ -99,7 +99,7 @@ export async function createStudent(req: Request, res: Response): Promise<void> 
 }
 export async function updateStudent(req: Request, res: Response): Promise<void> {
   // The route parameter is text; accept only a positive, safe whole-number ID.
-  const idText = req.params.id;
+  const idText = String(req.params.id);
   const id = Number(idText);
   if (!/^\d+$/.test(idText) || !Number.isSafeInteger(id) || id < 1) {
     res.status(400).json({ message: 'Student ID must be a positive integer' });
@@ -168,7 +168,7 @@ export async function updateStudent(req: Request, res: Response): Promise<void> 
 
 export async function deleteStudent(req: Request, res: Response): Promise<void> {
   // Read the ID after /students/ in the request URL.
-  const idText = req.params.id;
+  const idText = String(req.params.id);
   const id = Number(idText);
  
   // Stop if the ID is not a positive, safe whole number.
